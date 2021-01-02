@@ -15,7 +15,7 @@ const int YBUF   = 280;
 
 bool ca[XBUF][YBUF];  // elementary cellular automaton
 
-bool neighborhood(int x, int y)
+bool neighborhood(int x, int y, int rule)
 {
 	uint8_t a = ca[x - 1][y - 1];
 	uint8_t b = ca[x - 0][y - 1];
@@ -23,16 +23,24 @@ bool neighborhood(int x, int y)
 
 	uint8_t n = (a << 2) | (b << 1) | c;
 
-	return 0 < n && n < 5;
+	switch (rule)
+	{
+		case 0:  return 0 < n && n < 7;  // 126
+		case 1:  return n == 0 || n == 3 || n == 6;  // 73
+		case 2:  return n == 0 || n == 3 || n == 5 || n == 6;  // 105
+		case 3:  return n == 1 || n == 3 || n == 5 || n == 6;  // 106
+		case 4:  return n == 1 || n == 2 || n == 4 || n == 7;  // 150
+		default: return false;
+	}
 }
 
-void populate()
+void populate(int rule)
 {
 	for (int y = 1; y < YBUF; y++)
 	{
 		for (int x = 1; x < XBUF - 1; x++)
 		{
-			ca[x][y] = neighborhood(x, y);
+			ca[x][y] = neighborhood(x, y, rule);
 		}
 	}
 }
@@ -79,7 +87,7 @@ int main()
 	while (true)
 	{
 		initBuffer();
-		populate();
+		populate(rand() % 5);
 		updateOled();
 	}
 }
