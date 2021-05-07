@@ -16,7 +16,7 @@ int main()
 	Mandelbrot* mandelbrot;
 
 	patch.Init();
-	srand(13);
+	srand(71);
 
 	int mode;
 

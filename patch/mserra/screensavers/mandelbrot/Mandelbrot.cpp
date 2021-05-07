@@ -35,6 +35,20 @@ class Mandelbrot
 	double threshold = 17.0;
 	const int FRAMES = 200;
 
+	public: Mandelbrot()
+	{
+		plane  = (struct cmplx*) aligned_alloc(32, DIM * sizeof (struct cmplx));
+		pixels = (int*) aligned_alloc(32, DIM * sizeof (int));
+	}
+
+	public: ~Mandelbrot()
+	{
+		free(plane);
+		free(pixels);
+	}
+
+	private:
+
 	double cmag(struct cmplx z)
 	{
 		return sqrt(z.r * z.r + z.i * z.i);
@@ -205,9 +219,6 @@ class Mandelbrot
 		int zoom;
 		struct rect r;
 	
-		plane  = (struct cmplx*) aligned_alloc(32, DIM * sizeof (struct cmplx));
-		pixels = (int*) aligned_alloc(32, DIM * sizeof (int));
-
 		threshold = 17.0;
 		zoom = 1;
 		r.w  = 12;
