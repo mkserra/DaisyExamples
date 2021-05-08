@@ -2,8 +2,8 @@
 #include "daisysp.h"
 #include "daisy_patch.h"
 
-#include "automata/Automata.cpp"
-#include "mandelbrot/Mandelbrot.cpp"
+#include "modes/Automata.cpp"
+#include "modes/Mandelbrot.cpp"
 
 using namespace daisy;
 using namespace daisysp;
