@@ -4,17 +4,19 @@
 #include <time.h>
 #include <math.h>
 
-#define XRES			128
-#define YRES			64
-#define DIM				(XRES * YRES)
-#define MAX_INCR		20
-
 using namespace daisy;
 using namespace daisysp;
 
 class Mandelbrot
 {
 	private:
+
+	static const int XRES = 128;
+	static const int YRES = 64;
+	static const int DIM  = XRES * YRES;
+
+	static const int MAX_INCR = 20;
+
 	struct cmplx
 	{
 		double r;
@@ -249,9 +251,6 @@ class Mandelbrot
 			r.x = 25;
 			r.y = 30;
 			animate(patch, r, &zoom);
-			r.x = 59;
-			r.y = 18;
-			animate(patch, r, &zoom);
 		}
 		else  // seahorse valley
 		{
@@ -275,9 +274,6 @@ class Mandelbrot
 			animate(patch, r, &zoom);
 			r.x = 7;
 			r.y = 28;
-			animate(patch, r, &zoom);
-			r.x = 103;
-			r.y = 45;
 			animate(patch, r, &zoom);
 		}
 	}

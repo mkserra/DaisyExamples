@@ -4,6 +4,8 @@
 
 #include "modes/Automata.cpp"
 #include "modes/Mandelbrot.cpp"
+#include "modes/Serviettes.cpp"
+#include "modes/Gnarl.cpp"
 
 using namespace daisy;
 using namespace daisysp;
@@ -14,6 +16,8 @@ int main()
 {
 	Automata* automata;
 	Mandelbrot* mandelbrot;
+	Serviettes* serviettes;
+	Gnarl* gnarl;
 
 	patch.Init();
 	srand(71);
@@ -22,7 +26,7 @@ int main()
 
 	while (true)
 	{
-		mode = rand() % 2;
+		mode = rand() % 4;
 
 		if (mode == 0)
 		{
@@ -30,11 +34,23 @@ int main()
 			automata->run(&patch);
 			delete automata;
 		}
-		else
+		else if (mode == 1)
 		{
 			mandelbrot = new Mandelbrot();
 			mandelbrot->run(&patch);
 			delete mandelbrot;
+		}
+		else if (mode == 2)
+		{
+			serviettes = new Serviettes();
+			serviettes->run(&patch);
+			delete serviettes;
+		}
+		else
+		{
+			gnarl = new Gnarl();
+			gnarl->run(&patch);
+			delete gnarl;
 		}
 		patch.DelayMs(2000);
 	}
