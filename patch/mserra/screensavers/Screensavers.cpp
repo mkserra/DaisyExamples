@@ -6,6 +6,7 @@
 #include "modes/Mandelbrot.cpp"
 #include "modes/Serviettes.cpp"
 #include "modes/Gnarl.cpp"
+#include "modes/Flakes.cpp"
 
 using namespace daisy;
 using namespace daisysp;
@@ -18,6 +19,7 @@ int main()
 	Mandelbrot* mandelbrot;
 	Serviettes* serviettes;
 	Gnarl* gnarl;
+	Flakes* flakes;
 
 	patch.Init();
 	srand(71);
@@ -26,7 +28,7 @@ int main()
 
 	while (true)
 	{
-		mode = rand() % 4;
+		mode = rand() % 5;
 
 		if (mode == 0)
 		{
@@ -45,6 +47,12 @@ int main()
 			serviettes = new Serviettes();
 			serviettes->run(&patch);
 			delete serviettes;
+		}
+		else if (mode == 3)
+		{
+			flakes = new Flakes();
+			flakes->run(&patch);
+			delete flakes;
 		}
 		else
 		{
